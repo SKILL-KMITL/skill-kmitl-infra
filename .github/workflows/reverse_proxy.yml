@@ -1,0 +1,58 @@
+name: Deploy Reverse Proxy
+
+on:
+  push:
+    paths:
+      - reverse_proxy
+    branches:
+      - master
+
+jobs:
+  deploy_reverse_proxy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+
+      # Checkout
+      - name: Checkout code
+        uses: actions/checkout@master
+        with:
+          ref: master
+
+      # Verify Changed
+      - name: Verify config changed
+        uses: tj-actions/verify-changed-files@v5.5
+        id: changed_files
+        with:
+          files: |
+            reverse_proxy
+
+      - name: Display changed files
+        if: steps.changed_files.outputs.files_changed == 'true'
+        run: |
+          echo "Changed files: ${{ steps.changed_files.outputs.changed_files }}" 
+
+      # Copy Config
+      - name: Copy Config
+        if: steps.changed_files.outputs.files_changed == 'true'
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key : ${{ secrets.SERVER_PRIVATE }}
+          source: "reverse_proxy"
+          target: "./deploy"
+          rm: false
+
+      # Deploy
+      - name: Deploy
+        if: steps.changed_files.outputs.files_changed == 'true'
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key : ${{ secrets.SERVER_PRIVATE }}
+          # -V, --renew-anon-volumes   Recreate anonymous volumes instead of retrieving
+          script: |
+            cd ./deploy/reverse_proxy
+            docker-compose up -d -V --no-deps 
