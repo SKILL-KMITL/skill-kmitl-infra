@@ -1,5 +1,4 @@
 FROM nginx
 
-COPY ./conf.d/default.conf /etc/nginx/conf.d/default.conf
-COPY ./includes/ /etc/nginx/includes/
-# COPY ./ssl/ /etc/ssl/certs/nginx/
+COPY ./reverse_proxy/conf.d/ /etc/nginx/conf.d/
+COPY ./reverse_proxy/includes/ /etc/nginx/includes/
