@@ -11,11 +11,18 @@ services:
       - 443:443
       - 8080:8080
     volumes:
-      - ./certbot/conf:/etc/letsencrypt
-      - ./certbot/www:/var/www/certbot
+      - ./certbot/conf:/etc/nginx/ssl
+      - ./certbot/data:/var/www/certbot
   certbot:
     container_name: 'certbot'
+    networks:
+      - application_prod_network
+    command: certonly --webroot --webroot-path=/var/www/certbot --email dev.vasin@gmail.com --agree-tos --no-eff-email -d skill-kmitl.ac.th -d www.skill-kmitl.ac.th
     image: certbot/certbot
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/logs:/var/log/letsencrypt
+      - ./certbot/data:/var/www/certbot
 networks:
   application_prod_network:
     driver: bridge
+    name: application_prod_network
