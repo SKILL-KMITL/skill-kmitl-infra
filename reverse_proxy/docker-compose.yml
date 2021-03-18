@@ -1,0 +1,22 @@
+version: '3'
+services:
+  reverse_proxy:
+    container_name: reverse_proxy
+    restart: always
+    build: ./
+    networks:
+      - application-prod-network
+    ports:
+      - 80:80
+      - 443:443
+      - 8080:8080
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+  certbot:
+    container_name: 'certbot'
+    image: certbot/certbot
+networks:
+  application-prod-network:
+    external:
+      name: front_prod_default
