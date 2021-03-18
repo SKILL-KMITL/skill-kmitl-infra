@@ -16,11 +16,14 @@ services:
       - ./certbot/conf:/etc/nginx/ssl
       - ./certbot/data:/var/www/certbot
   certbot:
-    image: certbot/certbot
+    image: certbot/certbot:latest
     container_name: 'certbot'
-    command: certonly --webroot --webroot-path=/var/www/certbot --email dev.vasin@gmail.com --agree-tos --no-eff-email -d skill-kmitl.ac.th -d www.skill-kmitl.ac.th
+    depends_on: 
+      - reverse_proxy
     networks:
       - application_prod_network
+    command: |
+      certonly --webroot --webroot-path=/var/www/certbot --email dev.vasin@gmail.com --agree-tos --no-eff-email -d skill-kmitl.ac.th -d www.skill-kmitl.ac.th
     volumes:
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/logs:/var/log/letsencrypt
