@@ -3,7 +3,7 @@ name: Deploy Reverse Proxy
 on:
   push:
     paths:
-      - reverse_proxy
+      - "reverse_proxy"
     branches:
       - master
 
