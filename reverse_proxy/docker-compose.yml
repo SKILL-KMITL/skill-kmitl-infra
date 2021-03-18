@@ -18,4 +18,4 @@ services:
     image: certbot/certbot
 networks:
   application_prod_network:
-    driver: front_prod_default
+    driver: bridge
