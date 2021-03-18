@@ -1,8 +1,8 @@
 version: '3'
 services:
-  reverse_proxy:
+  nginx:
     image: nginx:latest
-    container_name: nginx
+    container_name: reverse_proxy
     restart: always
     networks:
       - application_prod_network
@@ -19,7 +19,7 @@ services:
     image: certbot/certbot:latest
     container_name: 'certbot'
     depends_on: 
-      - reverse_proxy
+      - nginx
     networks:
       - application_prod_network
     command: |
