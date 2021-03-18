@@ -48,5 +48,5 @@ jobs:
         # -V, --renew-anon-volumes   Recreate anonymous volumes instead of retrieving
         script: |
           cd ./deploy/database
-          echo POSTGRES_PASSWORD="${{secret.POSTGRES_PASSWORD}}" >> .env
+          echo POSTGRES_PASSWORD="${{secrets.POSTGRES_PASSWORD}}" >> .env
           docker-compose up -d -V --no-deps 
