@@ -11,14 +11,22 @@ jobs:
     timeout-minutes: 5
     steps:
 
-     # Checkout
+      # Checkout
       - name: Checkout code
         uses: actions/checkout@master
         with:
           ref: master
 
+      # Verify Changed
+      - name: Verify config changed
+        uses: tj-actions/verify-changed-files@v5.5
+        id: changed_files
+        with:
+          files: reverse_proxy
+
       # Copy Config
       - name: Copy Config
+        if: steps.changed_files.outputs.files_changed == 'true'
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -30,6 +38,7 @@ jobs:
 
       # Deploy
       - name: Deploy
+        if: steps.changed_files.outputs.files_changed == 'true'
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SERVER_HOST }}
