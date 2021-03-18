@@ -5,7 +5,7 @@ services:
     restart: always
     build: ./
     networks:
-      - application-prod-network
+      - application_prod_network
     ports:
       - 80:80
       - 443:443
@@ -17,6 +17,5 @@ services:
     container_name: 'certbot'
     image: certbot/certbot
 networks:
-  application-prod-network:
-    external:
-      name: front_prod_default
+  application_prod_network:
+    driver: front_prod_default
