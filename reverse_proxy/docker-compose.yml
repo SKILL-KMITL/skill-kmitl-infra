@@ -13,7 +13,7 @@ services:
     volumes:
       - ./conf.d:/etc/nginx/conf.d
       - ./includes:/etc/nginx/includes
-      - ./certbot/conf:/etc/nginx/ssl
+      - ./certbot/conf:/etc/letsencrypt
       - ./certbot/data:/var/www/certbot
   certbot:
     image: certbot/certbot:latest
