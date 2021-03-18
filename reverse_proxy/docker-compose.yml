@@ -1,9 +1,9 @@
 version: '3'
 services:
   reverse_proxy:
+    image: nginx:latest
     container_name: reverse_proxy
     restart: always
-    build: ./
     networks:
       - application_prod_network
     ports:
@@ -11,6 +11,8 @@ services:
       - 443:443
       - 8080:8080
     volumes:
+      - ./conf.d:/etc/nginx/conf.d
+      - ./includes:/etc/nginx/includes
       - ./certbot/conf:/etc/nginx/ssl
       - ./certbot/data:/var/www/certbot
   certbot:
