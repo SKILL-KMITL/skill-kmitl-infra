@@ -17,8 +17,8 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key : ${{ secrets.SERVER_PRIVATE }}
-          source: "./reverse_proxy/"
-          target: "./reverse_proxy"
+          source: "./"
+          target: "./deploy"
           rm: true
 
       # Deploy
