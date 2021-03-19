@@ -28,9 +28,9 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key : ${{ secrets.SERVER_PRIVATE }}
-          source: "hasura/**"
-          target: "deploy/hasura"
-          rm: true
+          source: "hasura"
+          target: "deploy"
+          rm: false
           
       # Deploy
       - name: Deploy
