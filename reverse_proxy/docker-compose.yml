@@ -23,7 +23,7 @@ services:
     networks:
       - application_prod_network
     command: |
-      certonly --webroot --webroot-path=/var/www/certbot --email dev.vasin@gmail.com --agree-tos --no-eff-email -d skill.kmitl.ac.th -d api.skill.kmitl.ac.th
+      certonly --webroot --webroot-path=/var/www/certbot --email dev.vasin@gmail.com --agree-tos --no-eff-email -d skill.kmitl.ac.th
     volumes:
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/logs:/var/log/letsencrypt
