@@ -18,8 +18,8 @@ services:
       container_name: hasura
       networks:
         - application_prod_network
-      expose:
-        - "80"
+      ports:
+        - "8080:8080"
       depends_on:
         - "postgres"
       restart: always
