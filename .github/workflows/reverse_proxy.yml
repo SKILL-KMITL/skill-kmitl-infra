@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - "reverse_proxy/**"
+      - ".github/workflows/reverse_proxy.yml"
     branches:
       - master
 

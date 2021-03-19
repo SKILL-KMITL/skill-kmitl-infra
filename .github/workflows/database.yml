@@ -1,10 +1,10 @@
-            
 name: Deploy Postgres
 
 on:
   push:
     paths:
       - "database/**"
+      - ".github/workflows/database.yml"
     branches:
       - master
 
