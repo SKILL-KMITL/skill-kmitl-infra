@@ -4,7 +4,7 @@ name: Deploy Postgres
 on:
   push:
     paths:
-      - "database/*"
+      - "database/**"
     branches:
       - master
 
