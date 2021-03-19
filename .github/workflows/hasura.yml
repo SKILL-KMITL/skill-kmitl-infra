@@ -41,7 +41,7 @@ jobs:
           key : ${{ secrets.SERVER_PRIVATE }}
           # -V, --renew-anon-volumes   Recreate anonymous volumes instead of retrieving
           script: |
-            cd ./deploy/database
+            cd ./deploy/hasura
             echo POSTGRES_PASSWORD="${{secrets.POSTGRES_PASSWORD}}" > .env
             echo HASURA_GRAPHQL_ADMIN_SECRET="${{secrets.HASURA_GRAPHQL_ADMIN_SECRET}}" > .env
             docker-compose up -d -V --no-deps 
