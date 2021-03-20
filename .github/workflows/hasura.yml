@@ -43,5 +43,5 @@ jobs:
             cd ./deploy/hasura
             echo POSTGRES_PASSWORD="${{secrets.POSTGRES_PASSWORD}}" > .env
             echo HASURA_GRAPHQL_ADMIN_SECRET="${{secrets.HASURA_GRAPHQL_ADMIN_SECRET}}" >> .env
-            echo HASURA_GRAPHQL_ADMIN_SECRET="${{secrets.HASURA_GRAPHQL_ADMIN_SECRET}}" >> .env
+            echo HASURA_GRAPHQL_JWT_SECRET="${{secrets.HASURA_GRAPHQL_JWT_SECRET}}" >> .env
             docker-compose up -d -V --no-deps 
