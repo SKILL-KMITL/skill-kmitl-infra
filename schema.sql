@@ -81,7 +81,8 @@ CREATE TABLE IF NOT EXISTS "profiles" (
   "skill_hard" varchar[],
   "skill_soft" varchar[],
   "career_position_id" SERIAL,
-  "interest" varchar[]
+  "interest" varchar[],
+  "education" varchar[]
 );
 
 ALTER TABLE "career_groups" ADD FOREIGN KEY ("career_field_id") REFERENCES "career_fields" ("id");
