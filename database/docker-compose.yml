@@ -13,8 +13,8 @@ services:
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
 
-  postgres_airflow:
-    container_name: postgres_airflow
+  postgres-airflow:
+    container_name: postgres-airflow
     image: postgres:12
     restart: always
     networks:
