@@ -22,8 +22,8 @@ services:
     volumes:
     - ./data/postgres-airflow:/var/lib/postgresql/data
     environment:
-      POSTGRES_DB: ${POSTGRES_AIRFLOW_DB}
-      POSTGRES_USER: ${POSTGRES_AIRFLOW_USER}
+      POSTGRES_DB: airflow
+      POSTGRES_USER: airflow
       POSTGRES_PASSWORD: ${POSTGRES_AIRFLOW_PASSWORD}
 
 networks:
