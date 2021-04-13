@@ -43,4 +43,7 @@ jobs:
           script: |
             cd ./deploy/database
             echo POSTGRES_PASSWORD="${{secrets.POSTGRES_PASSWORD}}" > .env
+            echo POSTGRES_AIRFLOW_DB="airflow" >> .env
+            echo POSTGRES_AIRFLOW_USER="airflow" >> .env
+            echo POSTGRES_AIRFLOW_PASSWORD="${{secrets.POSTGRES_AIRFLOW_PASSWORD}}" >> .env
             docker-compose up -d -V --no-deps 
